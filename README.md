@@ -10,25 +10,17 @@ CSSE Module - University Project
 This is a ticketing system for the public transport network, in this system we mainly focus on having a user-friendly ticketing system for buses. If a bus needs to have the system, the bus needs to be registered through bus depo. So once the bus is registered there will be a QR Code will be provided for each bus, by using the QR Code passengers can pay the travel amount through Scanning the QR Code. Once a passenger gets into the bus, he needs to scan the QR code and provide the IN location and OUT location and once the passenger needs to get out from the bus, the passenger needs to scan the QR Code again to make the payment. All the payment that was made for each bus was sent to the bus depo, and from there the payment was credited to the bus owner.
 
 
-<h1 align="center"> GitPoint </h1> <br>
+<h1 align="center"> BUS Ticketing System </h1> <br>
 <p align="center">
-  <a href="https://gitpoint.co/">
-    <img alt="GitPoint" title="GitPoint" src="http://i.imgur.com/VShxJHs.png" width="450">
+  <a href="https://doolshe.com/">
+    <img alt="BTS" title="BTS" src="http://i.imgur.com/VShxJHs.png" width="450">
   </a>
 </p>
 
 <p align="center">
-  GitHub in your pocket. Built with React Native.
+  Ticketing-System-For-Public-Transport-Network
 </p>
 
-<p align="center">
-  <a href="https://itunes.apple.com/us/app/gitpoint/id1251245162?mt=8">
-    <img alt="Download on the App Store" title="App Store" src="http://i.imgur.com/0n2zqHD.png" width="140">
-  </a>
-
-  <a href="https://play.google.com/store/apps/details?id=com.gitpoint">
-    <img alt="Get it on Google Play" title="Google Play" src="http://i.imgur.com/mtGRPuM.png" width="140">
-  </a>
 </p>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
