@@ -36,9 +36,7 @@ This is a ticketing system for the public transport network, in this system we m
 
 **Available for Web and Android.**
 
-<p align="center">
-  ![Login](https://user-images.githubusercontent.com/101692241/198027189-fbeb8d90-c12e-4cc9-acce-c3afc1a7b43c.png)
-</p>
+![Login](https://user-images.githubusercontent.com/101692241/198027189-fbeb8d90-c12e-4cc9-acce-c3afc1a7b43c.png)
 
 ## Features
 
