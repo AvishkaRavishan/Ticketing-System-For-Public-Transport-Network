@@ -37,7 +37,7 @@ This is a ticketing system for the public transport network, in this system we m
 **Available for Web and Android.**
 
 <p align="center">
-  <img src = "[http://i.imgur.com/HowF6aM.png](https://user-images.githubusercontent.com/101692241/198026903-f67611f9-51d4-4322-b75e-e7032e8e1963.png)" width=350>
+  ![Login](https://user-images.githubusercontent.com/101692241/198027189-fbeb8d90-c12e-4cc9-acce-c3afc1a7b43c.png)
 </p>
 
 ## Features
