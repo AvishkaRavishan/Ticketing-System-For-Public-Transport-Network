@@ -8,8 +8,6 @@ CSSE Module - University Project
 - IT20241032 - RAVISHAN S. A. A
 
 
-
-
 <h1 align="center"> BUS Ticketing System </h1> <br>
 <p align="center">
   <a href="https://doolshe.com/">
@@ -38,7 +36,7 @@ This is a ticketing system for the public transport network, in this system we m
 
 ![Login](https://user-images.githubusercontent.com/101692241/198027189-fbeb8d90-c12e-4cc9-acce-c3afc1a7b43c.png)
 
-## Features
+## User Story
 
 * the bus needs to be registered through bus depo
 
@@ -57,18 +55,6 @@ This is a ticketing system for the public transport network, in this system we m
 Add Your Feedback here!
 < https://forms.gle/bovTVrJUQFRVR8TX8 >
 
-## Build Process
-
-- Follow the [React Native Guide](https://facebook.github.io/react-native/docs/getting-started.html) for getting started building a project with native code. **A Mac is required if you wish to develop for iOS.**
-- Clone or download the repo
-- `yarn` to install dependencies
-- `yarn run link` to link react-native dependencies
-- `yarn start:ios` to start the packager and run the app in the iOS simulator (`yarn start:ios:logger` will boot the application with [redux-logger](<https://github.com/evgenyrodionov/redux-logger>))
-- `yarn start:android` to start the packager and run the app in the the Android device/emulator (`yarn start:android:logger` will boot the application with [redux-logger](https://github.com/evgenyrodionov/redux-logger))
-
-Please take a look at the [contributing guidelines](./CONTRIBUTING.md) for a detailed process on how to build your application as well as troubleshooting information.
-
-**Development Keys**: The `CLIENT_ID` and `CLIENT_SECRET` in `api/index.js` are for development purposes and do not represent the actual application keys. Feel free to use them or use a new set of keys by creating an [OAuth application](https://github.com/settings/applications/new) of your own. Set the "Authorization callback URL" to `gitpoint://welcome`.
 
 ## Team Members 
 
@@ -80,4 +66,4 @@ Please take a look at the [contributing guidelines](./CONTRIBUTING.md) for a det
 
 ## Acknowledgments
 
-Thanks to [JetBrains](https://www.jetbrains.com) for supporting us with a [free Open Source License](https://www.jetbrains.com/buy/opensource).
+Thanks to Android Studio & Flutter for supporting us with a free Open Source License.
