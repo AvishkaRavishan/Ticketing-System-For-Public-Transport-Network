@@ -55,7 +55,7 @@ Add Your Feedback here!
 < https://forms.gle/bovTVrJUQFRVR8TX8 >
 
 ## Database
-FireBase DB
+Firebase DB
 < https://bus-ticketing-system-37cd5.firebaseapp.com >
 
 ## Team Members 
