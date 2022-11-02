@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ticketingsystem/screens/QRcode.dart';
+import "package:cloud_firestore/cloud_firestore.dart";
+import 'package:firebase_core/firebase_core.dart';
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
 
@@ -9,12 +12,10 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  late  FirebaseAuth _firebaseAuth;
-  TextEditingController username = TextEditingController();
-  TextEditingController password = TextEditingController();
-
-
-  //AuthenticationService(this._firebaseAuth);
+  late   FirebaseAuth _firebaseAuth;
+  TextEditingController email = TextEditingController();
+  TextEditingController route = TextEditingController();
+  TextEditingController vehicle = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +35,8 @@ class _SignupState extends State<Signup> {
                     child: Container(
                         margin: EdgeInsets.only(right: 20, left: 10),
                         child: TextField(
-                          decoration: InputDecoration(hintText: 'Username'),
+                          controller: vehicle,
+                          decoration: InputDecoration(hintText: 'Vehicle No'),
                         )))
               ],
             ),
@@ -48,7 +50,7 @@ class _SignupState extends State<Signup> {
                     child: Container(
                         margin: EdgeInsets.only(right: 20, left: 10),
                         child: TextField(
-                          controller: password,
+                          controller: route,
                           decoration: InputDecoration(hintText: 'Password'),
                         )))
               ],
@@ -63,7 +65,7 @@ class _SignupState extends State<Signup> {
                     child: Container(
                         margin: EdgeInsets.only(right: 20, left: 10),
                         child: TextField(
-                          controller: username,
+                          controller: email,
                           decoration: InputDecoration(hintText: 'Email'),
                         )))
               ],
@@ -82,11 +84,11 @@ class _SignupState extends State<Signup> {
                         text: 'I have accepted the',
                         style: TextStyle(color: Colors.black),
                         children: [
-                      TextSpan(
-                          text: 'Terms & Condition',
-                          style: TextStyle(
-                              color: Colors.teal, fontWeight: FontWeight.bold))
-                    ]))
+                          TextSpan(
+                              text: 'Terms & Condition',
+                              style: TextStyle(
+                                  color: Colors.teal, fontWeight: FontWeight.bold))
+                        ]))
               ],
             ),
           ),
@@ -101,7 +103,16 @@ class _SignupState extends State<Signup> {
                 height: 60,
                 child: RaisedButton(
                   onPressed: () {
+                    if(vehicle.text.isEmpty){
+                      Fluttertoast.showToast(msg:'Required Filed Vehicle !');
+                    }else if(route.text.isEmpty){
+                      Fluttertoast.showToast(msg:'Required Filed Route !');
 
+                    }else if(email.text.isEmpty){
+                      Fluttertoast.showToast(msg:'Required Filed  email!');
+                    }else {
+                      add(email: email.text, vehicle: vehicle.text,route: route.text);
+                    }
                   },
                   color: Color(0xFF00a79B),
                   child: Text(
@@ -119,7 +130,42 @@ class _SignupState extends State<Signup> {
       ),
     );
   }
+  Future<String?> add({required String email,required String vehicle, required String route}) async {
+    Map<String,String> map={} ;
+    map["email"]= email;
+    map["route"]= route;
+    map["vehicle"] = vehicle;
+    try {
 
+      FirebaseFirestore.instance
+          .collection('buses').doc(vehicle).set(map);
+      Fluttertoast.showToast(msg:'Successfully Registered!.');
+      return " ";
+
+    } on FirebaseAuthException catch(e) {
+      Fluttertoast.showToast(msg:' Registered Rejected !'+e.message.toString());
+      return e.message;
+    }
+  }
+
+  // 5
+  Future<String?> signOut() async {
+    try {
+      await _firebaseAuth.signOut();
+      return "Signed out";
+    } on FirebaseAuthException catch(e) {
+      return e.message;
+    }
+  }
+
+// 6
+  User? getUser() {
+    try {
+      return _firebaseAuth.currentUser;
+    } on FirebaseAuthException {
+      return null;
+    }
+  }
 
 }
 
@@ -135,41 +181,41 @@ class BackButtonWidget extends StatelessWidget {
               fit: BoxFit.cover, image: AssetImage('assets/logo.jpg'))),
       child: Positioned(
           child: Stack(
-        children: <Widget>[
-          Positioned(
-              top: 20,
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
-                  Text(
-                    'Back',
+            children: <Widget>[
+              Positioned(
+                  top: 20,
+                  child: Row(
+                    children: <Widget>[
+                      IconButton(
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> QrCode()));
+                          }),
+                      Text(
+                        'Back',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  )),
+              Positioned(
+                bottom: 20,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'New BUS Register',
                     style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  )
-                ],
-              )),
-          Positioned(
-            bottom: 20,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Create New Account',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              ),
-            ),
-          )
-        ],
-      )),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
+                  ),
+                ),
+              )
+            ],
+          )),
     );
   }
 }
