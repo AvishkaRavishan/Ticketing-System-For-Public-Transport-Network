@@ -12,15 +12,25 @@ class _LoginState extends State<Login> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Card(
+        clipBehavior: Clip.antiAlias,
+        child:Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Image.asset(
-            'assets/logo.jpg',
-            width: 100,
+          Padding(
+            padding: const EdgeInsets.only(top: 100),
+            child: Container(
+              alignment: Alignment.topLeft,
+              child: Image.asset(
+                'assets/logo.jpg',
+                width: MediaQuery.of(context).size.width <= 100
+                    ? MediaQuery.of(context).size.width*10
+                    : MediaQuery.of(context).size.width * 0.6,
+              ),
+            ),
           ),
           Container(
             alignment: Alignment.center,
@@ -31,14 +41,6 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Knight Watch",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                   const Text(
                     "Sign In",
                     style: TextStyle(
@@ -96,18 +98,22 @@ class _LoginState extends State<Login> {
                               .signInWithEmailAndPassword(
                                   email: username.text,
                                   password: password.text);
-                          Fluttertoast.showToast(msg:"Successfully Login");
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> Signup()));
+                          Fluttertoast.showToast(msg: "Successfully Login");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Signup()));
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'user-not-found') {
-                            Fluttertoast.showToast(msg:'No user found for that email.');
+                            Fluttertoast.showToast(
+                                msg: 'No user found for that email.');
                           } else if (e.code == 'wrong-password') {
-                            Fluttertoast.showToast(msg:'Wrong password provided for that user.');
+                            Fluttertoast.showToast(
+                                msg: 'Wrong password provided for that user.');
                           }
                         }
                         // Fluttertoast.showToast(msg:username.text);
                         //  print('a',username.text);
-
                       },
                       child: Text("Login",
                           style: TextStyle(
@@ -122,6 +128,7 @@ class _LoginState extends State<Login> {
           ),
         ],
       ),
+    )
     );
   }
 }
