@@ -2,6 +2,7 @@
     package="com.ticketing.ticketingsystem">
    <application
         android:label="ticketingsystem"
+       android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

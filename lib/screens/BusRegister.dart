@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ticketingsystem/screens/QRcode.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -10,9 +9,12 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  late final  FirebaseAuth _firebaseAuth;
+  late  FirebaseAuth _firebaseAuth;
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
+
+
+  //AuthenticationService(this._firebaseAuth);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,7 @@ class _SignupState extends State<Signup> {
                     child: Container(
                         margin: EdgeInsets.only(right: 20, left: 10),
                         child: TextField(
-                          decoration: InputDecoration(hintText: 'Name'),
+                          decoration: InputDecoration(hintText: 'Username'),
                         )))
               ],
             ),
@@ -99,7 +101,7 @@ class _SignupState extends State<Signup> {
                 height: 60,
                 child: RaisedButton(
                   onPressed: () {
-                    signUp(email: username.text,password: password.text);
+
                   },
                   color: Color(0xFF00a79B),
                   child: Text(
@@ -117,33 +119,7 @@ class _SignupState extends State<Signup> {
       ),
     );
   }
-  Future<String?> signUp({required String email, required String password}) async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-      return "Signed up";
-    } on FirebaseAuthException catch(e) {
-      return e.message;
-    }
-  }
 
-  // 5
-  Future<String?> signOut() async {
-    try {
-      await _firebaseAuth.signOut();
-      return "Signed out";
-    } on FirebaseAuthException catch(e) {
-      return e.message;
-    }
-  }
-
-// 6
-  User? getUser() {
-    try {
-      return _firebaseAuth.currentUser;
-    } on FirebaseAuthException {
-      return null;
-    }
-  }
 
 }
 
@@ -170,7 +146,7 @@ class BackButtonWidget extends StatelessWidget {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> QrCode()));
+                        Navigator.pop(context);
                       }),
                   Text(
                     'Back',

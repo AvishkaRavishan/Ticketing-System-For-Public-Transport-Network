@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "363121053378",
+    "project_id": "bus-ticketing-system-37cd5",
+    "storage_bucket": "bus-ticketing-system-37cd5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363121053378:android:1967b49fe10ce668ebf55b",
+        "android_client_info": {
+          "package_name": "com.ticketing.ticketingsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363121053378-8otvmaldv2a0ugc5vc1t4mln8gj1po2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCofYtLAfZdkQZj65nCvLx1rJErVkToGfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363121053378-8otvmaldv2a0ugc5vc1t4mln8gj1po2h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "363121053378-sb7pol3122v7ra3qn3meh96g08qa8mn8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ticketing.ticketingsystem"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
