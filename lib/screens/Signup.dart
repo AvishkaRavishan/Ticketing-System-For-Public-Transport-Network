@@ -4,6 +4,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ticketingsystem/screens/QRcode.dart';
 import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_core/firebase_core.dart';
+
+import 'BusRegister.dart';
+
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
 
@@ -12,10 +15,11 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  late   FirebaseAuth _firebaseAuth;
+  late FirebaseAuth _firebaseAuth;
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController name = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,14 +107,13 @@ class _SignupState extends State<Signup> {
                 height: 60,
                 child: RaisedButton(
                   onPressed: () {
-                    if(name.text.isEmpty){
-                      Fluttertoast.showToast(msg:'Required Filed name !');
-                    }else if(username.text.isEmpty){
-                      Fluttertoast.showToast(msg:'Required Filed username !');
-
-                    }else if(password.text.isEmpty){
-                      Fluttertoast.showToast(msg:'Required Filed  password!');
-                    }else {
+                    if (name.text.isEmpty) {
+                      Fluttertoast.showToast(msg: 'Required Filed name !');
+                    } else if (username.text.isEmpty) {
+                      Fluttertoast.showToast(msg: 'Required Filed username !');
+                    } else if (password.text.isEmpty) {
+                      Fluttertoast.showToast(msg: 'Required Filed  password!');
+                    } else {
                       signUp(email: username.text, password: password.text);
                     }
                   },
@@ -130,21 +133,22 @@ class _SignupState extends State<Signup> {
       ),
     );
   }
-  Future<String?> signUp({required String email, required String password}) async {
-    Map<String,String> map={} ;
-    map["name"]= name.text;
-    map["role"]= "user";
 
+  Future<String?> signUp(
+      {required String email, required String password}) async {
+    Map<String, String> map = {};
+    map["name"] = name.text;
+    map["role"] = "user";
 
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-      FirebaseFirestore.instance
-          .collection('User').doc(email).set(map);
-      Fluttertoast.showToast(msg:'Successfully Registered!.');
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      FirebaseFirestore.instance.collection('User').doc(email).set(map);
+      Fluttertoast.showToast(msg: 'Successfully Registered!.');
       return "Signed up";
-
-    } on FirebaseAuthException catch(e) {
-      Fluttertoast.showToast(msg:' Registered Rejected !'+e.message.toString());
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(
+          msg: ' Registered Rejected !' + e.message.toString());
       return e.message;
     }
   }
@@ -154,7 +158,7 @@ class _SignupState extends State<Signup> {
     try {
       await _firebaseAuth.signOut();
       return "Signed out";
-    } on FirebaseAuthException catch(e) {
+    } on FirebaseAuthException catch (e) {
       return e.message;
     }
   }
@@ -167,12 +171,9 @@ class _SignupState extends State<Signup> {
       return null;
     }
   }
-
 }
 
 class BackButtonWidget extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -193,7 +194,10 @@ class BackButtonWidget extends StatelessWidget {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> QrCode()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BusRegister()));
                       }),
                   Text(
                     'Back',
