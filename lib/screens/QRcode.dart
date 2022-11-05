@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -84,11 +83,11 @@ class _QrCodeState extends State<QrCode> {
   }
 }
 
-downloadFile(url) {
-  AnchorElement anchorElement = new AnchorElement(href: url);
-  anchorElement.download = "Flutter Logo";
-  anchorElement.click();
-}
+// downloadFile(url) {
+//   AnchorElement anchorElement = new AnchorElement(href: url);
+//   anchorElement.download = "Flutter Logo";
+//   anchorElement.click();
+// }
 
 class DividerThemeDemo extends StatelessWidget {
   @override

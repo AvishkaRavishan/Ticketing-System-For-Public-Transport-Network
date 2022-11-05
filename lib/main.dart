@@ -1,6 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:ticketingsystem/screens/BusRegister.dart';
+import 'package:ticketingsystem/screens/BusTicket.dart';
 import 'package:ticketingsystem/screens/Login.dart';
+import 'package:ticketingsystem/screens/QR.dart';
+import 'package:ticketingsystem/screens/TravelInfo.dart';
+import 'package:ticketingsystem/screens/UserProfile.dart';
+import 'package:ticketingsystem/screens/Payment.dart';
 
 import 'firebase_options.dart';
 
@@ -19,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'CSSE',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -32,7 +38,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      home: BusRegister(),
     );
   }
 }

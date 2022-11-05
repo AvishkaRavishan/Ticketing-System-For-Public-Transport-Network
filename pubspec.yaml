@@ -43,6 +43,8 @@ dependencies:
   cloud_firestore: 3.1.12
   qr_code_scanner: 0.7.0
   image_downloader_web: ^1.0.2
+  flutter_credit_card: ^3.0.4
+  ticket_widget: ^0.0.1
 
 dev_dependencies:
   flutter_test:
