@@ -6,24 +6,21 @@ import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_core/firebase_core.dart';
 
 import 'BusRegister.dart';
-import 'Traveler.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({Key? key}) : super(key: key);
+class AddRoutes extends StatefulWidget {
+  const AddRoutes({Key? key}) : super(key: key);
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<AddRoutes> createState() => _AddRoutesState();
 }
 
-class _SignupState extends State<Signup> {
+class _AddRoutesState extends State<AddRoutes> {
   late FirebaseAuth _firebaseAuth;
-  TextEditingController username = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController name = TextEditingController();
+  TextEditingController route = TextEditingController();
 
-  TextEditingController address = TextEditingController();
-  TextEditingController mobile = TextEditingController();
-  TextEditingController nic = TextEditingController();
+  TextEditingController spoint = TextEditingController();
+  TextEditingController epoint = TextEditingController();
+
 
 
   @override
@@ -45,8 +42,8 @@ class _SignupState extends State<Signup> {
                     child: Container(
                         margin: EdgeInsets.only(right: 20, left: 10),
                         child: TextField(
-                          controller: name,
-                          decoration: InputDecoration(hintText: 'Name'),
+                          controller: route,
+                          decoration: InputDecoration(hintText: 'Route No'),
                         )))
               ],
             ),
@@ -60,12 +57,13 @@ class _SignupState extends State<Signup> {
                     child: Container(
                         margin: EdgeInsets.only(right: 20, left: 10),
                         child: TextField(
-                          controller: password,
-                          decoration: InputDecoration(hintText: 'Password'),
+                          controller: spoint,
+                          decoration: InputDecoration(hintText: 'Start Point'),
                         )))
               ],
             ),
           ),
+
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Row(
@@ -75,25 +73,8 @@ class _SignupState extends State<Signup> {
                     child: Container(
                         margin: EdgeInsets.only(right: 20, left: 10),
                         child: TextField(
-                          controller: username,
-                          decoration: InputDecoration(hintText: 'Email'),
-                        )))
-              ],
-            ),
-          ),
-
-
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              children: <Widget>[
-                IconButton(icon: Icon(Icons.phone), onPressed: null),
-                Expanded(
-                    child: Container(
-                        margin: EdgeInsets.only(right: 20, left: 10),
-                        child: TextField(
-                          controller: mobile,
-                          decoration: InputDecoration(hintText: 'Mobile'),
+                          controller: epoint,
+                          decoration: InputDecoration(hintText: 'End Point'),
                         )))
               ],
             ),
@@ -101,58 +82,7 @@ class _SignupState extends State<Signup> {
 
 
 
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              children: <Widget>[
-                IconButton(icon: Icon(Icons.home), onPressed: null),
-                Expanded(
-                    child: Container(
-                        margin: EdgeInsets.only(right: 20, left: 10),
-                        child: TextField(
-                          controller: address,
-                          decoration: InputDecoration(hintText: 'Address'),
-                        )))
-              ],
-            ),
-          ),
 
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              children: <Widget>[
-                IconButton(icon: Icon(Icons.credit_card_sharp), onPressed: null),
-                Expanded(
-                    child: Container(
-                        margin: EdgeInsets.only(right: 20, left: 10),
-                        child: TextField(
-                          controller: nic,
-                          decoration: InputDecoration(hintText: 'NIC'),
-                        )))
-              ],
-            ),
-          ),
-
-
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: <Widget>[
-                Radio(value: null, groupValue: null, onChanged: null),
-                RichText(
-                    text: TextSpan(
-                        text: 'I have accepted the',
-                        style: TextStyle(color: Colors.black),
-                        children: [
-                      TextSpan(
-                          text: 'Terms & Condition',
-                          style: TextStyle(
-                              color: Colors.teal, fontWeight: FontWeight.bold))
-                    ]))
-              ],
-            ),
-          ),
 
           SizedBox(
             height: 10,
@@ -165,24 +95,19 @@ class _SignupState extends State<Signup> {
                 height: 60,
                 child: RaisedButton(
                   onPressed: () {
-                    if (name.text.isEmpty) {
-                      Fluttertoast.showToast(msg: 'Required Filed name !');
-                    } else if (username.text.isEmpty) {
-                      Fluttertoast.showToast(msg: 'Required Filed username !');
-                    } else if (password.text.isEmpty) {
-                      Fluttertoast.showToast(msg: 'Required Filed  password!');
+                    if (route.text.isEmpty) {
+                      Fluttertoast.showToast(msg: 'Required Filed Route No !');
+                    } else if (spoint.text.isEmpty) {
+                      Fluttertoast.showToast(msg: 'Required Filed Start point !');
+                    } else if (epoint.text.isEmpty) {
+                      Fluttertoast.showToast(msg: 'Required Filed  End point!');
                     } else {
-                      // signUp(email: username.text, password: password.text);
-                      Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Traveler("","")));
+                      
                     }
                   },
                   color: Color(0xFF00a79B),
                   child: Text(
-                    'SIGN UP',
+                    'CREATE',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -197,11 +122,11 @@ class _SignupState extends State<Signup> {
     );
   }
 
-  Future<String?> signUp(
+  Future<String?> AddRoutes(
       {required String email, required String password}) async {
     Map<String, String> map = {};
-    map["name"] = name.text;
-    map["role"] = "user";
+    // map["name"] = name.text;
+    // map["role"] = "user";
 
     try {
       await FirebaseAuth.instance
@@ -292,7 +217,7 @@ class BackButtonWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Create New Account',
+                'Add Route',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

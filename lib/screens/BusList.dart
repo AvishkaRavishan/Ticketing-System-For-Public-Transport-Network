@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
 
-void main() {
-  runApp(MyApp());
-}
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -15,19 +13,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // PaymentList: PaymentList(),
+      // busList: BusList(),
     );
   }
 }
 
-class PaymentList extends StatefulWidget {
-  const PaymentList({Key? key}) : super(key: key);
+class BusList extends StatefulWidget {
+  const BusList({Key? key}) : super(key: key);
 
   @override
-  _PaymentListState createState() => _PaymentListState();
+  _BusListState createState() => _BusListState();
 }
 
-class _PaymentListState extends State<PaymentList> {
+class _BusListState extends State<BusList> {
   List<String> items = [];
   ScrollController _scrollController = ScrollController();
   double indicator = 10.0;
@@ -55,7 +53,7 @@ class _PaymentListState extends State<PaymentList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Payment List'),
+          title: Text('Bus List'),
         ),
         body: Container(
           child: new ListView.builder(
