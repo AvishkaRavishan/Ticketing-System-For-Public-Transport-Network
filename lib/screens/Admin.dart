@@ -28,18 +28,65 @@ class _AdminState extends State<Admin> {
       color: Colors.black,
       fontWeight: FontWeight.bold,
     );
-    return MaterialApp(
-        home: Center(
-            child: Scaffold(
-              appBar: AppBar(
-                title: Text("Flutter GridView Demo"),
-              ),
-              body: Center(
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.height * 0.25,
-                      height: MediaQuery.of(context).size.height * 0.25,
+    return  Scaffold(
+          appBar: AppBar(
+            title: Text("Admin"),
+            leading: const BackButton(
+              color: Colors.black, // <-- SEE HERE
+            ),
+            centerTitle: true,
+
+          ),
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.only(left:200),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.height * 0.25,
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    child: Card(
+                        elevation: 10,
+                        color: Colors.white,
+                        child: Center(
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Expanded(
+                                    child: Icon(Icons.directions_bus,
+                                        size: 50.0, color: textStyle.color)),
+                                Text("Register Bus", style: textStyle),
+                              ]),
+                        )),
+                  ),
+
+                  SizedBox(
+                    width: MediaQuery.of(context).size.height * 0.25,
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    child: Card(
+                        elevation: 10,
+                        color: Colors.white,
+                        child: Center(
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Expanded(
+                                    child: Icon(Icons.format_list_bulleted,
+                                        size: 50.0, color: textStyle.color)),
+                                Text("Bus List", style: textStyle),
+                              ]),
+                        )),
+                  ),
+
+
+                  SizedBox(
+                    width: MediaQuery.of(context).size.height * 0.25,
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => QrScanner()));
+                      },
                       child: Card(
                           elevation: 10,
                           color: Colors.white,
@@ -49,38 +96,17 @@ class _AdminState extends State<Admin> {
                                 children: <Widget>[
                                   Expanded(
                                       child: Icon(Icons.supervised_user_circle,
-                                          size: 50.0, color: textStyle.color)),
-                                  Text("User Profile", style: textStyle),
+                                          size: 50.0, color: Colors.black)),
+                                  Text("User List", style: textStyle),
                                 ]),
                           )),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.height * 0.25,
-                      height: MediaQuery.of(context).size.height * 0.25,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => QrScanner()));
-                        },
-                        child: Card(
-                            elevation: 10,
-                            color: Colors.white,
-                            child: Center(
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Expanded(
-                                        child: Icon(qr_code_scanner_rounded,
-                                            size: 50.0, color: Colors.black)),
-                                    Text("QR Code", style: textStyle),
-                                  ]),
-                            )),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )));
+                  ),
+                ],
+
+        ),
+            ),
+          ));
   }
 }
 
