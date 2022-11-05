@@ -20,6 +20,11 @@ class _SignupState extends State<Signup> {
   TextEditingController password = TextEditingController();
   TextEditingController name = TextEditingController();
 
+  TextEditingController address = TextEditingController();
+  TextEditingController mobile = TextEditingController();
+  TextEditingController nic = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,9 +80,60 @@ class _SignupState extends State<Signup> {
               ],
             ),
           ),
-          SizedBox(
-            height: 40,
+
+
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              children: <Widget>[
+                IconButton(icon: Icon(Icons.phone), onPressed: null),
+                Expanded(
+                    child: Container(
+                        margin: EdgeInsets.only(right: 20, left: 10),
+                        child: TextField(
+                          controller: mobile,
+                          decoration: InputDecoration(hintText: 'Mobile'),
+                        )))
+              ],
+            ),
           ),
+
+
+
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              children: <Widget>[
+                IconButton(icon: Icon(Icons.home), onPressed: null),
+                Expanded(
+                    child: Container(
+                        margin: EdgeInsets.only(right: 20, left: 10),
+                        child: TextField(
+                          controller: address,
+                          decoration: InputDecoration(hintText: 'Address'),
+                        )))
+              ],
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              children: <Widget>[
+                IconButton(icon: Icon(Icons.credit_card_sharp), onPressed: null),
+                Expanded(
+                    child: Container(
+                        margin: EdgeInsets.only(right: 20, left: 10),
+                        child: TextField(
+                          controller: nic,
+                          decoration: InputDecoration(hintText: 'NIC'),
+                        )))
+              ],
+            ),
+          ),
+
+
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -96,6 +152,8 @@ class _SignupState extends State<Signup> {
               ],
             ),
           ),
+
+
           SizedBox(
             height: 10,
           ),
@@ -153,6 +211,12 @@ class _SignupState extends State<Signup> {
     }
   }
 
+  bool validateStructure(String value){
+    String  pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+    RegExp regExp = new RegExp(pattern);
+    return regExp.hasMatch(value);
+  }
+
   // 5
   Future<String?> signOut() async {
     try {
@@ -171,6 +235,18 @@ class _SignupState extends State<Signup> {
       return null;
     }
   }
+}
+
+String validateMobile(String value) {
+  String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  RegExp regExp = new RegExp(patttern);
+  if (value.length == 0) {
+    return 'Please enter mobile number';
+  }
+  else if (!regExp.hasMatch(value)) {
+    return 'Please enter valid mobile number';
+  }
+  return "null";
 }
 
 class BackButtonWidget extends StatelessWidget {
