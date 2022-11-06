@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ticketingsystem/screens/BusList.dart';
+import 'package:ticketingsystem/screens/BusRegister.dart';
 
 import 'QRcode.dart';
 import 'QrScanner.dart';
@@ -45,24 +47,42 @@ class _AdminState extends State<Admin> {
                   SizedBox(
                     width: MediaQuery.of(context).size.height * 0.25,
                     height: MediaQuery.of(context).size.height * 0.25,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => BusRegister()));
+                },
                     child: Card(
                         elevation: 10,
                         color: Colors.white,
+
                         child: Center(
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Expanded(
+
                                     child: Icon(Icons.directions_bus,
                                         size: 50.0, color: textStyle.color)),
                                 Text("Register Bus", style: textStyle),
+
+
+
+
+
                               ]),
                         )),
+                  ),
                   ),
 
                   SizedBox(
                     width: MediaQuery.of(context).size.height * 0.25,
                     height: MediaQuery.of(context).size.height * 0.25,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => BusList()));
+                      },
                     child: Card(
                         elevation: 10,
                         color: Colors.white,
@@ -77,7 +97,7 @@ class _AdminState extends State<Admin> {
                               ]),
                         )),
                   ),
-
+                  ),
 
                   SizedBox(
                     width: MediaQuery.of(context).size.height * 0.25,
@@ -138,3 +158,11 @@ class SelectCard extends StatelessWidget {
         ));
   }
 }
+
+// onPressed:(){
+// Navigator.push(
+// context,
+// MaterialPageRoute(
+// builder: (context) =>
+// BusRegister()));
+// }

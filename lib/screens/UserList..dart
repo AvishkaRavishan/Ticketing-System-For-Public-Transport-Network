@@ -1,24 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // UserList: UserList(),
-    );
-  }
-}
 
 class UserList extends StatefulWidget {
   const UserList({Key? key}) : super(key: key);
@@ -50,6 +33,17 @@ class _UserListState extends State<UserList> {
       items.add('Person ' + (count + 1).toString());
     }
   }
+
+
+
+  //
+  // db.collection("appointments").doc("FpS9NDSdMD2GeE9GL3i2").get().then(
+  // (DocumentSnapshot doc) {
+  // final data = doc.data() as Map<String, dynamic>;
+  // // ...
+  // },
+  // onError: (e) => print("Error getting document: $e"),
+  // );
 
   @override
   Widget build(BuildContext context) {

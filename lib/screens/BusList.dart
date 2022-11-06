@@ -1,23 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
 
-
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // busList: BusList(),
-    );
-  }
-}
-
 class BusList extends StatefulWidget {
   const BusList({Key? key}) : super(key: key);
 
@@ -62,8 +45,8 @@ class _BusListState extends State<BusList> {
               itemBuilder: (BuildContext ctxt, int index) {
                 return new Card(
                     child: ListTile(
-                      title: Text(items[index]),
-                    ));
+                  title: Text(items[index]),
+                ));
               }),
         ),
         floatingActionButton: ScrollingFabAnimated(

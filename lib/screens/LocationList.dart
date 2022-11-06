@@ -1,24 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // LocationList: LocationList(),
-    );
-  }
-}
 
 class LocationList extends StatefulWidget {
   const LocationList({Key? key}) : super(key: key);
@@ -77,7 +60,13 @@ class _LocationListState extends State<LocationList> {
             'Add',
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
-          onPress: () {},
+          onPress: () {
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) =>PaymentList()
+            //     ));
+          },
           scrollController: _scrollController,
           animateIcon: true,
           inverted: false,

@@ -1,5 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ticketingsystem/screens/Home.dart';
+import 'package:ticketingsystem/screens/Signup.dart';
+import 'package:ticketingsystem/screens/UserHome.dart';
+import 'package:ticketingsystem/screens/UserList..dart';
+import 'package:ticketingsystem/screens/UserProfile.dart';
 
 import 'QRcode.dart';
 import 'QrScanner.dart';
@@ -46,6 +54,11 @@ class _TravelerState extends State<Traveler> {
               SizedBox(
   width: MediaQuery.of(context).size.height * 0.25,
   height: MediaQuery.of(context).size.height * 0.25,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => UserProfile()));
+              },
   child: Card(
       elevation: 10,
       color: Colors.white,
@@ -56,10 +69,14 @@ class _TravelerState extends State<Traveler> {
               Expanded(
                   child: Icon(Icons.supervised_user_circle,
                       size: 50.0, color: textStyle.color)),
+
               Text("User Profile", style: textStyle),
+
             ]),
       )),
 ),
+              ),
+
 SizedBox(
   width: MediaQuery.of(context).size.height * 0.25,
   height: MediaQuery.of(context).size.height * 0.25,

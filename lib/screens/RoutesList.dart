@@ -1,33 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // PaymentList: PaymentList(),
-    );
-  }
-}
 
-class PaymentList extends StatefulWidget {
-  const PaymentList({Key? key}) : super(key: key);
+class RoutesList extends StatefulWidget {
+  const RoutesList({Key? key}) : super(key: key);
 
   @override
-  _PaymentListState createState() => _PaymentListState();
+  _RoutesListState createState() => _RoutesListState();
 }
 
-class _PaymentListState extends State<PaymentList> {
+class _RoutesListState extends State<RoutesList> {
   List<String> items = [];
   ScrollController _scrollController = ScrollController();
   double indicator = 10.0;
@@ -84,3 +67,4 @@ class _PaymentListState extends State<PaymentList> {
         ));
   }
 }
+
