@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
 
-
-
-class LocationList extends StatefulWidget {
-  const LocationList({Key? key}) : super(key: key);
+class BusList extends StatefulWidget {
+  const BusList({Key? key}) : super(key: key);
 
   @override
-  _LocationListState createState() => _LocationListState();
+  _BusListState createState() => _BusListState();
 }
 
-class _LocationListState extends State<LocationList> {
+class _BusListState extends State<BusList> {
   List<String> items = [];
   ScrollController _scrollController = ScrollController();
   double indicator = 10.0;
@@ -38,7 +36,7 @@ class _LocationListState extends State<LocationList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Location List'),
+          title: Text('Bus List'),
         ),
         body: Container(
           child: new ListView.builder(
@@ -47,8 +45,8 @@ class _LocationListState extends State<LocationList> {
               itemBuilder: (BuildContext ctxt, int index) {
                 return new Card(
                     child: ListTile(
-                      title: Text(items[index]),
-                    ));
+                  title: Text(items[index]),
+                ));
               }),
         ),
         floatingActionButton: ScrollingFabAnimated(
@@ -60,13 +58,7 @@ class _LocationListState extends State<LocationList> {
             'Add',
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
-          onPress: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) =>PaymentList()
-            //     ));
-          },
+          onPress: () {},
           scrollController: _scrollController,
           animateIcon: true,
           inverted: false,
