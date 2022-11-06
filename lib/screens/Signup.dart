@@ -4,6 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ticketingsystem/screens/QRcode.dart';
 import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_core/firebase_core.dart';
+import 'package:ticketingsystem/screens/UserHome.dart';
+import 'package:ticketingsystem/screens/UserProfile.dart';
 
 import 'BusRegister.dart';
 
@@ -197,16 +199,24 @@ class _SignupState extends State<Signup> {
     Map<String, String> map = {};
     map["name"] = name.text;
     map["role"] = "user";
+    map["address"] = address.text;
+    map["mobile"] = mobile.text;
+    map["nic"] = nic.text;
+
 
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       FirebaseFirestore.instance.collection('User').doc(email).set(map);
       Fluttertoast.showToast(msg: 'Successfully Registered!.');
-      return "Signed up";
+      return "Registered";
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => UserProfile()));
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(
-          msg: ' Registered Rejected !' + e.message.toString());
+          msg: ' Rejected !' + e.message.toString());
       return e.message;
     }
   }

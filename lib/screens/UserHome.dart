@@ -32,7 +32,7 @@ class _UserHomeState extends State<UserHome> {
         home: Center(
             child: Scaffold(
       appBar: AppBar(
-        title: Text("Flutter GridView Demo"),
+        title: Text("CSSE"),
       ),
       body: Center(
         child: Row(
