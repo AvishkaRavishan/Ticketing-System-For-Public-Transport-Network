@@ -6,7 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class UserProfile extends StatefulWidget {
-
+  String name = "User Name";
+  String role = "User Role";
+  String address = "User Address";
+  String nic = "User NIC";
+  String mobile = "User Phone";
 
   @override
   State<UserProfile> createState() => _UserProfileState();

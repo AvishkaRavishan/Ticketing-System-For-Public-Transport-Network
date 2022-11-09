@@ -104,42 +104,53 @@ class _LoginState extends State<Login> {
                                 Fluttertoast.showToast(msg: "Successfully Login");
                                 final db = FirebaseFirestore.instance;
 
-                                await db
-                                    .collection('user')
-                                    .doc(username.text)
+                                FirebaseFirestore.instance
+                                    .collection("User")
                                     .get()
-                                    .then((DocumentSnapshot documentSnapshot) {
+                                    .then((snapshot) {
+                                  snapshot.docs.forEach((element) {
 
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              UserProfile()));
-                                  if (documentSnapshot.get("role").toString() ==
-                                      "user") {
-                                    Navigator.push(
-                                        context,
-
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                Home("vh", "title")));
-                                  } else if (documentSnapshot
-                                      .get("role")
-                                      .toString() ==
-                                      "admin") {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                Admin("vh", "title")));
-                                  } else {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                UserHome("vh", "title")));
-                                  }
+                                    print(element["name"]);
+                                  });
                                 });
+
+                                // await db
+                                //     .collection('User')
+                                //     .doc(username.text)
+                                //     .get()
+                                //     .then((DocumentSnapshot documentSnapshot) {
+                                //   var data = documentSnapshot.data;
+                                //   print(documentSnapshot.get("name"));
+                                //   Navigator.push(
+                                //       context,
+                                //       MaterialPageRoute(
+                                //           builder: (context) =>
+                                //               UserProfile()));
+                                //   if (documentSnapshot.get("role").toString() ==
+                                //       "user") {
+                                //     Navigator.push(
+                                //         context,
+                                //
+                                //         MaterialPageRoute(
+                                //             builder: (context) =>
+                                //                 Home("vh", "title")));
+                                //   } else if (documentSnapshot
+                                //       .get("role")
+                                //       .toString() ==
+                                //       "admin") {
+                                //     Navigator.push(
+                                //         context,
+                                //         MaterialPageRoute(
+                                //             builder: (context) =>
+                                //                 Admin("vh", "title")));
+                                //   } else {
+                                //     Navigator.push(
+                                //         context,
+                                //         MaterialPageRoute(
+                                //             builder: (context) =>
+                                //                 UserHome("vh", "title")));
+                                //   }
+                                // });
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'user-not-found') {
                                   Fluttertoast.showToast(

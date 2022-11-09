@@ -1,75 +1,88 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
-
-
 
 class LocationList extends StatefulWidget {
-  const LocationList({Key? key}) : super(key: key);
+
 
   @override
-  _LocationListState createState() => _LocationListState();
+  State<LocationList> createState() => _LocationListState();
 }
 
 class _LocationListState extends State<LocationList> {
-  List<String> items = [];
-  ScrollController _scrollController = ScrollController();
-  double indicator = 10.0;
-  bool onTop = true;
-
-  @override
-  void initState() {
-    super.initState();
-    addItemsToTheList();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void addItemsToTheList() {
-    for (int count = 0; count < 100; count++) {
-      items.add('Person ' + (count + 1).toString());
-    }
-  }
-
+  String name = "";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Location List'),
-        ),
-        body: Container(
-          child: new ListView.builder(
-              controller: _scrollController,
-              itemCount: items.length,
-              itemBuilder: (BuildContext ctxt, int index) {
-                return new Card(
-                    child: ListTile(
-                      title: Text(items[index]),
-                    ));
-              }),
-        ),
-        floatingActionButton: ScrollingFabAnimated(
-          icon: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-          text: Text(
-            'Add',
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-          onPress: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) =>PaymentList()
-            //     ));
+    return  Scaffold(
+        body: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('locations').snapshots(),
+          builder: (context, snapshots) {
+            return (snapshots.connectionState == ConnectionState.waiting)
+                ? Center(
+              child: CircularProgressIndicator(),
+            )
+                : ListView.builder(
+                itemCount: snapshots.data!.docs.length,
+                itemBuilder: (context, index) {
+                  var data = snapshots.data!.docs[index].data()
+                  as Map<String, dynamic>;
+
+
+                  return ListTile(
+                    title: Text(
+                      data['location'],
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    // subtitle: Text(
+                    //   data['email'],
+                    //   maxLines: 1,
+                    //   overflow: TextOverflow.ellipsis,
+                    //   style: TextStyle(
+                    //       color: Colors.black54,
+                    //       fontSize: 16,
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    // leading: CircleAvatar(
+                    //   backgroundImage: NetworkImage(data['image']),
+                    // ),
+                  );
+                }
+              // if (data['name']
+              //     .toString()
+              //     .toLowerCase()
+              //     .startsWith(name.toLowerCase())) {
+              //   return ListTile(
+              //     title: Text(
+              //       data['name'],
+              //       maxLines: 1,
+              //       overflow: TextOverflow.ellipsis,
+              //       style: TextStyle(
+              //           color: Colors.black54,
+              //           fontSize: 16,
+              //           fontWeight: FontWeight.bold),
+              //     ),
+              //     // subtitle: Text(
+              //     //   data['email'],
+              //     //   maxLines: 1,
+              //     //   overflow: TextOverflow.ellipsis,
+              //     //   style: TextStyle(
+              //     //       color: Colors.black54,
+              //     //       fontSize: 16,
+              //     //       fontWeight: FontWeight.bold),
+              //     // ),
+              //     // leading: CircleAvatar(
+              //     //   backgroundImage: NetworkImage(data['image']),
+              //     // ),
+              //   );
+              // }
+              // return Container();
+            );
           },
-          scrollController: _scrollController,
-          animateIcon: true,
-          inverted: false,
-        ));
+        )
+    );
   }
 }

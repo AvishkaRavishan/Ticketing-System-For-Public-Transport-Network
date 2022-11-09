@@ -5,6 +5,7 @@ import 'package:ticketingsystem/screens/BusRegister.dart';
 
 import 'QRcode.dart';
 import 'QrScanner.dart';
+import 'UserList..dart';
 
 class Admin extends StatefulWidget {
   const Admin(this.vh, this.title);
@@ -80,8 +81,8 @@ class _AdminState extends State<Admin> {
                     height: MediaQuery.of(context).size.height * 0.25,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => BusList()));
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context) => /*BusList()*/));
                       },
                     child: Card(
                         elevation: 10,
@@ -105,7 +106,7 @@ class _AdminState extends State<Admin> {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => QrScanner()));
+                            MaterialPageRoute(builder: (context) => UserList()));
                       },
                       child: Card(
                           elevation: 10,

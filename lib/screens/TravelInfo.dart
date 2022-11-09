@@ -1,11 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ticketingsystem/screens/Login.dart';
-import 'package:ticketingsystem/screens/QRcode.dart';
-import "package:cloud_firestore/cloud_firestore.dart";
-import 'package:firebase_core/firebase_core.dart';
-import 'TravelInfo.dart';
+
 class TravelInfo extends StatefulWidget {
   const TravelInfo({Key? key}) : super(key: key);
   @override

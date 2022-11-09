@@ -1,80 +1,208 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
-
-
-
 class UserList extends StatefulWidget {
-  const UserList({Key? key}) : super(key: key);
-
   @override
-  _UserListState createState() => _UserListState();
+  State<UserList> createState() => _UserListState();
 }
-
 class _UserListState extends State<UserList> {
-  List<String> items = [];
-  ScrollController _scrollController = ScrollController();
-  double indicator = 10.0;
-  bool onTop = true;
+  String name = "User Name";
+  String role = "User Role";
+  String address = "User Address";
+  String nic = "User NIC";
+  String mobile = "User Phone";
 
-  @override
-  void initState() {
-    super.initState();
-    addItemsToTheList();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void addItemsToTheList() {
-    for (int count = 0; count < 100; count++) {
-      items.add('Person ' + (count + 1).toString());
-    }
-  }
-
-
-
-  //
-  // db.collection("appointments").doc("FpS9NDSdMD2GeE9GL3i2").get().then(
-  // (DocumentSnapshot doc) {
-  // final data = doc.data() as Map<String, dynamic>;
-  // // ...
-  // },
-  // onError: (e) => print("Error getting document: $e"),
-  // );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('User List'),
-        ),
-        body: Container(
-          child: new ListView.builder(
-              controller: _scrollController,
-              itemCount: items.length,
-              itemBuilder: (BuildContext ctxt, int index) {
-                return new Card(
-                    child: ListTile(
-                      title: Text(items[index]),
-                    ));
-              }),
-        ),
-        floatingActionButton: ScrollingFabAnimated(
-          icon: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-          text: Text(
-            'Add',
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-          onPress: () {},
-          scrollController: _scrollController,
-          animateIcon: true,
-          inverted: false,
-        ));
+        body: StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('User').snapshots(),
+      builder: (context, snapshots) {
+        return (snapshots.connectionState == ConnectionState.waiting)
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                itemCount: snapshots.data!.docs.length,
+                itemBuilder: (context, index) {
+                  var data = snapshots.data!.docs[index].data()
+                      as Map<String, dynamic>;
+
+
+            return Center(
+                    child: SizedBox(
+                      width: 400,
+                      height: 180,
+                      child: Card(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Card(
+                                  child: Text("Name:",
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                TextButton(
+                                  child: Text(
+                                    data['name'],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  onPressed: () {
+                                    /* ... */
+                                  },
+                                ),
+                                const SizedBox(width: 8),
+                              ],
+                            ),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Card(
+                                  child: Text("Address:",
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                TextButton(
+                                  child: Text(
+                                    data['address'],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  onPressed: () {
+                                    /* ... */
+                                  },
+                                ),
+                                const SizedBox(width: 8),
+                              ],
+                            ),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Card(
+                                  child: Text("NIC:",
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                TextButton(
+                                  child: Text(
+                                    data['nic'],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  onPressed: () {
+                                    /* ... */
+                                  },
+                                ),
+                                const SizedBox(width: 8),
+                              ],
+                            ),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Card(
+                                  child: Text("Phone No:",
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                TextButton(
+                                  child: Text(
+                                    data['mobile'],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  onPressed: () {
+                                    /* ... */
+                                  },
+                                ),
+                                const SizedBox(width: 8),
+                              ],
+                            ),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: const <Widget>[
+                                Icon(
+                                  Icons.edit,
+                                  color: Colors.pink,
+                                  size: 24.0,
+                                  semanticLabel: 'Text to announce in accessibility modes',
+                                ),
+                                Icon(
+                                  Icons.delete,
+                                  color: Colors.green,
+                                  size: 30.0,
+
+
+
+
+                                ),
+                                Icon(
+                                  Icons.read_more,
+                                  color: Colors.blue,
+                                  size: 36.0,
+                                ),
+                              ],
+                            )
+
+                          ],
+                        ),
+                        // clipBehavior is necessary because, without it, the InkWell's animation
+                        // will extend beyond the rounded edges of the [Card] (see https://github.com/flutter/flutter/issues/109776)
+                        // This comes with a small performance cost, and you should not set [clipBehavior]
+                        // unless you need it.
+                      ),
+                    ),
+                  );
+
+                }
+
+                );
+      },
+    ));
   }
 }
