@@ -6,7 +6,7 @@ import 'package:ticketingsystem/screens/PaymentList.dart';
 import 'package:ticketingsystem/screens/QRcode.dart';
 import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_core/firebase_core.dart';
-import 'package:ticketingsystem/screens/UserList..dart';
+import 'package:ticketingsystem/screens/UserList.dart';
 import 'BusRegister.dart';
 
 class AddLocations extends StatefulWidget {

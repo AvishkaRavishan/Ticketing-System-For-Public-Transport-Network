@@ -5,7 +5,7 @@ import 'package:ticketingsystem/screens/BusRegister.dart';
 
 import 'QRcode.dart';
 import 'QrScanner.dart';
-import 'UserList..dart';
+import 'UserList.dart';
 
 class Admin extends StatefulWidget {
   const Admin(this.vh, this.title);

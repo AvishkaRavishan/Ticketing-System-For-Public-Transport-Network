@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ticketingsystem/screens/Home.dart';
 import 'package:ticketingsystem/screens/Signup.dart';
 import 'package:ticketingsystem/screens/UserHome.dart';
-import 'package:ticketingsystem/screens/UserList..dart';
+import 'package:ticketingsystem/screens/UserList.dart';
 import 'package:ticketingsystem/screens/UserProfile.dart';
 
 import 'QRcode.dart';

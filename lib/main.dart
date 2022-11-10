@@ -10,7 +10,7 @@ import 'package:ticketingsystem/screens/LocationList.dart';
 import 'package:ticketingsystem/screens/Login.dart';
 import 'package:ticketingsystem/screens/QR.dart';
 import 'package:ticketingsystem/screens/TravelInfo.dart';
-import 'package:ticketingsystem/screens/UserList..dart';
+import 'package:ticketingsystem/screens/UserList.dart';
 import 'package:ticketingsystem/screens/UserProfile.dart';
 import 'package:ticketingsystem/screens/Payment.dart';
 

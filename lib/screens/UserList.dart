@@ -114,7 +114,7 @@ class _UserListState extends State<UserList> {
                                   ),
                                 ),
                                 const SizedBox(width: 8),
-                                TextButton(
+                                Card(
                                   child: Text(
                                     data['nic'],
                                     maxLines: 1,
@@ -124,9 +124,7 @@ class _UserListState extends State<UserList> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  onPressed: () {
-                                    /* ... */
-                                  },
+
                                 ),
                                 const SizedBox(width: 8),
                               ],
@@ -165,28 +163,26 @@ class _UserListState extends State<UserList> {
 
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: const <Widget>[
-                                Icon(
-                                  Icons.edit,
-                                  color: Colors.pink,
-                                  size: 24.0,
-                                  semanticLabel: 'Text to announce in accessibility modes',
-                                ),
-                                Icon(
-                                  Icons.delete,
-                                  color: Colors.green,
-                                  size: 30.0,
-
-
-
-
-                                ),
-                                Icon(
-                                  Icons.read_more,
-                                  color: Colors.blue,
-                                  size: 36.0,
-                                ),
-                              ],
+                                children:  [
+                                  FlatButton(
+                                  onPressed: () {},
+                            child: Icon(
+                              Icons.remove_red_eye,
+                            )),
+                        FlatButton(
+                            onPressed: () {},
+                            child: Icon(
+                              Icons.edit,
+                            )),
+                        FlatButton(
+                            onPressed: () {
+                              delete(snapshots.data!.docs[index].id.toString());
+                            },
+                            child: Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                          )),
+                      ],
                             )
 
                           ],
@@ -204,5 +200,11 @@ class _UserListState extends State<UserList> {
                 );
       },
     ));
+  }
+
+  void delete(String id){
+    FirebaseFirestore.instance.collection("User").doc(id)
+        .delete();
+
   }
 }
