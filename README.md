@@ -68,4 +68,4 @@ Firebase DB
 
 ## Acknowledgments
 
-Thanks to Android Studio, Flutter & FireBase for supporting us with a free Open Source License..
+Thanks to Android Studio, Flutter & FireBase for supporting us with a free Open Source License...
